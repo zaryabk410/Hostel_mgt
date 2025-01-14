@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Define Header Template -->
+    <template id="report_header_template">
+        <div class="header">
+            <img t-attf-src="/my_hostel/static/src/img/novacare_header.png"
+                     style="width: 100%; height: auto;" alt="Logo"/>
+<!--            <div style="text-align: center; padding: 20px 0;">-->
+<!--                <img src="/my_hostel/static/src/img/novacare_header.png" style="width: 100%; max-height: 100px;"/>-->
+<!--            </div>-->
+        </div>
+    </template>
+
+    <!-- Define Footer Template -->
+    <template id="report_footer_template">
+        <div class="footer">
+            <img t-attf-src="/my_hostel/static/src/img/novacare_footer.png"
+                     style="width: 100%; height: auto;" alt="Footer"/>
+<!--            <div style="text-align: center; padding: 20px 0;">-->
+<!--                <img src="/my_hostel/static/src/img/novacare_footer.png" style="width: 100%; max-height: 80px;"/>-->
+<!--                <div class="text-center" style="margin-top: 10px;">-->
+<!--                    <div class="text-muted">-->
+<!--                        Page: <span class="page"/> / <span class="topage"/>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+        </div>
+    </template>
+
+    <!-- Main Report Template -->
+    <template id="report_hostel_room_template">
+        <t t-name="my_hostel.report_hostel_room">
+            <!-- Use the external layout which is better suited for reports -->
+            <t t-call="web.external_layout">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="web.basic_layout">
+                        <!-- Call custom header -->
+                        <t t-call="my_hostel.report_header_template"/>
+
+                        <!-- First Page: Room and Hostel Details -->
+                        <div class="page">
+                            <div class="container">
+                                <h2 class="text-center mb-4" >Room and Hostel Details</h2>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <table class="table table-bordered">
+                                            <tr>
+                                                <th style="width: 30%; background-color: #f8f9fa;">Room Name</th>
+                                                <td><span t-field="doc.name"/></td>
+                                            </tr>
+                                            <tr>
+                                                <th style="background-color: #f8f9fa;">Room Number</th>
+                                                <td><span t-field="doc.room_no"/></td>
+                                            </tr>
+                                            <tr>
+                                                <th style="background-color: #f8f9fa;">Floor Number</th>
+                                                <td><span t-field="doc.floor_no"/></td>
+                                            </tr>
+                                            <tr>
+                                                <th style="background-color: #f8f9fa;">Rent Amount</th>
+                                                <td>
+                                                    <span t-field="doc.rent_amount"/>
+                                                    <span t-field="doc.currency_id.name"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th style="background-color: #f8f9fa;">Hostel Name</th>
+                                                <td><span t-field="doc.hostel_name"/></td>
+                                            </tr>
+                                            <tr>
+                                                <th style="background-color: #f8f9fa;">Students Per Room</th>
+                                                <td><span t-field="doc.student_per_room"/></td>
+                                            </tr>
+                                            <tr>
+                                                <th style="background-color: #f8f9fa;">State</th>
+                                                <td><span t-field="doc.state"/></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="container">
+                                <h2 class="text-center mb-4">Hostel Rules</h2>
+                                <div class="rules-section">
+                                    <div class="rule-item mb-4" style="border: 1px solid #dee2e6; padding: 15px; border-radius: 5px;">
+                                        <h4 style="color: #2c3e50;">Rule 1</h4>
+                                        <p>Maintain cleanliness in your rooms at all times to ensure a hygienic environment for everyone.</p>
+                                    </div>
+                                    <div class="rule-item mb-4" style="border: 1px solid #dee2e6; padding: 15px; border-radius: 5px;">
+                                        <h4 style="color: #2c3e50;">Rule 2</h4>
+                                        <p>Respect quiet hours from 10 PM to 6 AM to allow everyone a peaceful rest period.</p>
+                                    </div>
+                                    <div class="rule-item mb-4" style="border: 1px solid #dee2e6; padding: 15px; border-radius: 5px;">
+                                        <h4 style="color: #2c3e50;">Rule 3</h4>
+                                        <p>No smoking or alcohol is permitted on hostel premises.</p>
+                                    </div>
+                                    <div class="rule-item mb-4" style="border: 1px solid #dee2e6; padding: 15px; border-radius: 5px;">
+                                        <h4 style="color: #2c3e50;">Rule 4</h4>
+                                        <p>Guests are only allowed during the designated visiting hours.</p>
+                                    </div>
+                                    <div class="rule-item mb-4" style="border: 1px solid #dee2e6; padding: 15px; border-radius: 5px;">
+                                        <h4 style="color: #2c3e50;">Rule 5</h4>
+                                        <p>Ensure timely payment of rent to avoid penalties.</p>
+                                    </div>
+                                    <div class="rule-item mb-4" style="border: 1px solid #dee2e6; padding: 15px; border-radius: 5px;">
+                                        <h4 style="color: #2c3e50;">Rule 6</h4>
+                                        <p>Report any maintenance issues to hostel management immediately.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        <!-- Third Page: Job and Student Rules with Fee Structure -->
+
+                            <div class="container">
+                                <h2 class="text-center mb-4">Student and Job Person Rules</h2>
+                                <div class="row mb-5">
+                                    <div class="col-12">
+                                        <div style="border: 1px solid #dee2e6; padding: 15px; border-radius: 5px; margin-bottom: 20px;">
+                                            <h4 style="color: #2c3e50;">Rules for Students</h4>
+                                            <p>
+                                                Students are expected to maintain discipline and follow the hostel curfew timings.
+                                                Participation in hostel activities is encouraged.
+                                            </p>
+                                        </div>
+
+                                        <div style="border: 1px solid #dee2e6; padding: 15px; border-radius: 5px; margin-bottom: 20px;">
+                                            <h4 style="color: #2c3e50;">Rules for Job Persons</h4>
+                                            <p>
+                                                Job persons must maintain a professional demeanor within the hostel premises
+                                                and ensure adherence to hostel policies.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <h2 class="text-center mb-4">Fee Structure</h2>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <table class="table table-bordered">
+                                            <tr>
+                                                <th style="width: 40%; background-color: #f8f9fa;">Room Rent</th>
+                                                <td>
+                                                    <span t-field="doc.rent_amount"/>
+                                                    <span t-field="doc.currency_id.name"/> per month
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th style="background-color: #f8f9fa;">Mess Charges</th>
+                                                <td>3000 per month (fixed)</td>
+                                            </tr>
+                                            <tr>
+                                                <th style="background-color: #f8f9fa;">Electricity and Maintenance</th>
+                                                <td>As per usage (billed monthly)</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Call custom footer -->
+                        <t t-call="my_hostel.report_footer_template"/>
+                    </t>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

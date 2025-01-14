@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!--form view-->
+        <record id="view_hostel_room_form" model="ir.ui.view">
+            <field name="name">hostel.room.form</field>
+            <field name="model">hostel.room</field>
+            <field name="arch" type="xml">
+                <form string="Room">
+                    <header>
+                        <button name="make_available" string="Make Available" type="object"/>
+                        <button name="make_closed" string="Make Closed" type="object"/>
+<!--                         <button name="log_all_room_members" string="Log members" type="object"/>-->
+<!--                            <button name="create_categories" string="Create Categories" type="object"/>-->
+<!--                        <button name="update_room_no" string="Update Room No" type="object"/>-->
+<!--                               this action button directly open room category model -->
+<!--                        <button type="action" name="%(my_hostel.hostel_room_category_action)d"-->
+<!--                                string="Open Hotel Room Category"/>-->
+
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <widget name="web_ribbon" title="Archived" bg_color="bg-danger"
+                                invisible="active"/>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="room_no"/>
+                                <field name="hostel_id" required="1"/>
+                                <field name="hostel_name"/>
+                                <field name="floor_no"/>
+                                <field name="active"/>
+                            </group>
+                            <group>
+                                <field name="student_per_room"/>
+                                <field name="availability"/>
+                                <field name="rent_amount"/>
+                                <field name="currency_id"/>
+                                <field name="hostel_room_category_id"/>
+<!--                                <field name="member_ids" widget="many2many_tags"/>-->
+                            </group>
+                        </group>
+                        <!--                        add pages-->
+                        <notebook>
+                            <page name="room_students" string="Students">
+                                <field name="student_ids"/>
+
+                            </page>
+                            <page name="hostel_amenities" string="Room Amenities">
+                                <group>
+                                    <field name="hostel_amenities_ids" widget="many2many_tags"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+<!--                    <div class="o_attachment_preview" invisible="state != 'draft'"/>-->
+                </form>
+            </field>
+        </record>
+        <!--        tree view-->
+        <record id="view_hostel_room_tree" model="ir.ui.view">
+            <field name="name">hostel.room.tree</field>
+            <field name="model">hostel.room</field>
+            <field name="arch" type="xml">
+                <tree string="Room" class="text-left">
+                    <field name="name"/>
+                    <field name="room_no"/>
+                    <field name="floor_no"/>
+                    <field name="hostel_name"/>
+
+                </tree>
+            </field>
+        </record>
+
+
+        <!-- Search View -->
+        <record id="hostel_room_view_search" model="ir.ui.view">
+            <field name="name">Hostel Room Search</field>
+            <field name="model">hostel.room</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="room_no"/>
+                    <separator/>
+                    <filter name="active" string="Archived" domain="[('active', '=', False)]"/>
+                    <group expand="0" string="Group By">
+                        <filter string="State" name="state" context="{'group_by':'state'}"/>
+                        <filter string="Floor" name="floor_no" context="{'group_by':'floor_no'}"/>
+                        <filter string="Hostel Name" name="hostel_name" context="{'group_by':'hostel_name'}"/>
+                    </group>
+<!--                    <searchpanel>-->
+<!--                        <field name="state" expand="1" select="multi" icon="fa-check-square-o" enable_counters="1"/>-->
+<!--                    </searchpanel>-->
+
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_hostel_room">
+            <field name="name">Room</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">hostel.room</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Create Room.
+                </p>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <menuitem id="hostel_main_menu" name="Hostel"
+                  sequence="11"
+                  web_icon="my_hostel,static/src/img/icon.png"/>
+
+<!--        <menuitem id="hostel_main_menu" name="Hostel" groups="my_hostel.group_hostel_user"/>-->
+
+        <!--        hostel menu-->
+        <menuitem id="hostel_type_menu" name="Hostel" parent="hostel_main_menu"
+                  action="my_hostel.action_hostel"
+                  sequence="1"/>
+
+        <!--        hostel room menu-->
+        <menuitem id="hostel_room_menu" name="Hostel Rooms" parent="my_hostel.hostel_main_menu"
+                  sequence="10"/>
+        <!--hostel room sub,menu 1-->
+        <menuitem id="hostel_room_menuitem" name="Hostel Rooms" parent="my_hostel.hostel_room_menu"
+                  action="my_hostel.action_hostel_room"
+                  sequence="1"/>
+        <!--hostel room sub,menu 2-->
+        <menuitem name="Hostel Room Categories" id="hostel_room_category_menu"
+                  parent="my_hostel.hostel_room_menu" action="hostel_room_category_action"/>
+
+        <!--        add students-->
+        <menuitem id="hostel_student_sub_menu" name="Students" parent="my_hostel.hostel_main_menu"
+                  action="my_hostel.action_hostel_student"
+                  sequence="3"/>
+
+        <!--        configuration -->
+        <menuitem id="hostel_configuration" name="Configuration" parent="my_hostel.hostel_main_menu"
+                  sequence="10"/>
+        <!--        1 menuitem amenities-->
+        <menuitem id="hostel_amenities_menu" name="Hostel Amenities" parent="my_hostel.hostel_configuration"
+                  action="my_hostel.action_hostel_amenities"
+                  sequence="1"/>
+        <!--        2 menuitem categories-->
+        <menuitem name="Hostel Categories" id="hostel_category_menu"
+                  parent="my_hostel.hostel_configuration" action="hostel_category_action"/>
+    </data>
+</odoo>

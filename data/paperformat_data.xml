@@ -1,0 +1,12 @@
+<odoo>
+    <record id="paperformat_a4" model="report.paperformat">
+        <field name="name">A4</field>
+        <field name="default" eval="False"/> <!-- Set as default only if necessary -->
+        <field name="format">A4</field>
+        <field name="orientation">Portrait</field> <!-- Change to 'Landscape' if needed -->
+        <field name="margin_top">0</field>
+        <field name="margin_bottom">0</field>
+        <field name="margin_left">0</field>
+        <field name="margin_right">0</field>
+    </record>
+</odoo>

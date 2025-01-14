@@ -1,0 +1,14 @@
+<odoo>
+    <data>
+        <record id="action_report_hostel_room" model="ir.actions.report">
+            <field name="name">Hostel Room Report</field>
+            <field name="model">hostel.room</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">my_hostel.report_hostel_room_template</field>
+            <field name="report_file">my_hostel.report_hostel_room_template</field>
+            <field name="print_report_name">'Hostel Room - %s' % object.name</field>
+            <field name="binding_model_id" ref="model_hostel_room"/>
+            <field name="paperformat_id" ref="paperformat_a4"/>
+        </record>
+    </data>
+</odoo>
